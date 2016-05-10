@@ -1,5 +1,5 @@
 {
-  "name": "Slackforce",
+  "name": "apttusApprove",
   "description": "Simple message broker to enable Slack to Apttus Approvals using Slash Commands",
   "env": {
     "CLIENT_ID": {
