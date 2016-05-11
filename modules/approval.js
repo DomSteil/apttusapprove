@@ -11,23 +11,17 @@ function execute(req, res) {
     }
 
     var params = req.body.text.split(":");
+    var subject = params[0];
+    var description = params[1];
 
-    var appreq = nforce.createSObject('Apttus_Approval__Approval_Request__c');
-    appreq.iWa__c = TRUE;
-    appreq.Slack_Status__c = 'Approved';
+    var acc = nforce.createSObject('Account');
+    acc.Name = 'Spiffy Cleaners';
+    acc.Phone = '800-555-2345';
+    acc.SLA__c = 'Gold';
 
-    org.insert({ sobject: appreq}, function(err, resp) {
-        if (err) {
-            console.error(err);
-            res.send("An error occurred while creating a case");
-        } else {
-            var message = {
-                response_type: "in_channel",
-                text: "A new Approval has been created:",
-                attachments: [
-                    {color: "#009cdb", fields: fields}
-                ]
-            };
+    org.insert(acc, oauth, function(err, resp){
+    if(!err) console.log('It worked!');
+
             res.json(message);
         }
     });
