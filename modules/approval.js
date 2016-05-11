@@ -11,12 +11,16 @@ function execute(req, res) {
     }
 
     var params = req.body.text.split(":");
-    var email= params[0];
-    var phone = params[1];
+    var subject = params[0];
+    var description = params[1];
 
-    var c = nforce.createSObject('Contact');
-    c.set('email', email);
-    c.set('phone', phone);
+    var c = nforce.createSObject('Case');
+    c.set('subject', subject);
+    c.set('description', description);
+    c.set('origin', 'Slack');
+    c.set('status', 'New');
+    c.set('type', 'Problem');
+    c.set('reason', 'Instructions not clear');
 
 
     org.insert({ sobject: c}, function(err, resp) {
@@ -25,8 +29,8 @@ function execute(req, res) {
             res.send("An error occurred while creating a case");
         } else {
             var fields = [];
-            fields.push({title: "Email", value: email, short:false});
-            fields.push({title: "Phone", value: phone, short:false});
+            fields.push({title: "Subject", value: subject, short:false});
+            fields.push({title: "Description", value: description, short:false});
             fields.push({title: "Link", value: 'https://login.salesforce.com/' + resp.id, short:false});
             var message = {
                 response_type: "in_channel",
