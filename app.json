@@ -21,6 +21,10 @@
     "APPROVAL_TOKEN": {
         "description": "Slack token for the case slash command",
         "value":"9QZ4k9P7VufguVSBgDkNQWv5"
+    },
+	"CASE_TOKEN": {
+        "description": "Slack token for the case slash command",
+        "value":""
     }
   }
 }
