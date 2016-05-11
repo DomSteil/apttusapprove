@@ -14,13 +14,11 @@ function execute(req, res) {
     var subject = params[0];
     var description = params[1];
 
-    var c = nforce.createSObject('Case');
+    var c = nforce.createSObject('Apttus_Approval__Approval_Request__c');
     c.set('subject', subject);
     c.set('description', description);
-    c.set('origin', 'Slack');
-    c.set('status', 'New');
-    c.set('type', 'Problem');
-    c.set('reason', 'Instructions not clear');
+    c.set('iWa__c', TRUE);
+
 
 
     org.insert({ sobject: c}, function(err, resp) {
