@@ -17,7 +17,6 @@ function execute(req, res) {
     var c = nforce.createSObject('Apttus_Approval__Approval_Request__c');
     c.set('subject', subject);
     c.set('description', description);
-    c.set('iWa__c', TRUE);
 
 
 
