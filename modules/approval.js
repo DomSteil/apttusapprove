@@ -15,7 +15,7 @@ function execute(req, res) {
    // var description = params[1];
 
     var c = nforce.createSObject('Approval_Request');
-    c.set(' Apttus_Approval__Date__c', '5/10/2016 10:31 AM');
+    c.set('Apttus_Approval__Date__c', '5/10/2016 10:31 AM');
 
 
 
