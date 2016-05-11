@@ -29,10 +29,6 @@ function execute(req, res) {
                 });
             }
         }
-    
-
-    }
-
 
     /*var c = nforce.updateSObject('Case');
     c.set('subject', subject);
@@ -61,6 +57,5 @@ function execute(req, res) {
             res.json(message);
         }
     });*/
-}
 
 exports.execute = execute;
