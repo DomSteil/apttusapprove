@@ -17,7 +17,7 @@ function execute(req, res) {
     var c = nforce.createSObject('Account');
     c.set('name', name);
     c.set('phone', phone);
-    c.set('Region__c', 'Americas');
+    c.set('region', 'Americas');
 
 
     org.insert({ sobject: c}, function(err, resp) {
