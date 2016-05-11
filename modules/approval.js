@@ -13,8 +13,8 @@ function execute(req, res) {
     var params = req.body.text.split(":");
 
 
-    var c = nforce.createSObject('Apttus_Approval__Approval_Request__c');
-    c.set('Slack_Status__c', 'Approved');
+    var c = nforce.createSObject('Apttus_Proposal__Proposal__c');
+    c.set(' Apttus_Proposal__Proposal_Name__c', 'Dom Test');
 
 
 
@@ -25,7 +25,6 @@ function execute(req, res) {
         } else {
             var fields = [];
             fields.push({title: "Subject", value: subject, short:false});
-            fields.push({title: "Description", value: description, short:false});
             fields.push({title: "Link", value: 'https://login.salesforce.com/' + resp.id, short:false});
             var message = {
                 response_type: "in_channel",
