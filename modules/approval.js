@@ -36,7 +36,7 @@ function execute(req, res) {
                 response_type: "in_channel",
                 text: "A new case has been created:",
                 attachments: [
-                    {color: "#009cdb", fields: fields}
+                    {color: "#62A70F", fields: fields}
                 ]
             };
             res.json(message);
