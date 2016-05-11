@@ -14,7 +14,7 @@ function execute(req, res) {
 
 
     var c = nforce.createSObject('Apttus_Proposal__Proposal__c');
-    c.set(' Apttus_Proposal__Proposal_Name__c', 'Dom Test');
+    c.set('Apttus_Proposal__Proposal_Name__c', 'Dom Test');
 
 
 
