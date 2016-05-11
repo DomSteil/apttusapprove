@@ -19,7 +19,7 @@ function execute(req, res) {
     c.set('description', description);
     c.set('origin', 'Slack');
     c.set('status', 'New');
-    c.set('type', 'Problem');
+    c.set('type', 'Question');
     c.set('reason', 'Instructions not clear');
 
 
