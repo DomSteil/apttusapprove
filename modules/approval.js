@@ -11,27 +11,19 @@ function execute(req, res) {
     }
 
     var params = req.body.text.split(":");
-    var subject = params[0];
-    var description = params[1];
 
-    var c = nforce.createSObject('Case');
-    c.set('subject', subject);
-    c.set('description', description);
-    c.set('origin', 'Slack');
-    c.set('status', 'New');
+    var appreq = nforce.createSObject('Approval_Request');
+    appreq.iWa__c = TRUE;
+    appreq.Slack_Status__c = 'Approved';
 
-    org.insert({ sobject: c}, function(err, resp) {
+    org.insert({ sobject: appreq}, function(err, resp) {
         if (err) {
             console.error(err);
             res.send("An error occurred while creating a case");
         } else {
-            var fields = [];
-            fields.push({title: "Subject", value: subject, short:false});
-            fields.push({title: "Description", value: description, short:false});
-            fields.push({title: "Link", value: 'https://login.salesforce.com/' + resp.id, short:false});
             var message = {
                 response_type: "in_channel",
-                text: "A new case has been created:",
+                text: "A new Approval has been created:",
                 attachments: [
                     {color: "#009cdb", fields: fields}
                 ]
