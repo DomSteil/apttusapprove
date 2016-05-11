@@ -14,15 +14,34 @@ function execute(req, res) {
     var subject = params[0];
     var description = params[1];
 
-    var c = nforce.createSObject('Case');
+    var querycase = 'SELECT id, Name, Type FROM Case WHERE id= 500j000000CpvEDAAZ';
+    //500j000000CpvEDAAZ
+    org.query({
+        query: querycase;
+
+    }), function(err, resp){
+        if(!err && resp.records){
+            var c = resp.records[0];
+            c.set('type', 'Problem');
+
+            org.update({sobject: c, oauth: oauth}, function(err, resp){
+                if(!err) console.log('we win');
+                });
+            }
+        }
+    
+
+    }
+
+
+    /*var c = nforce.updateSObject('Case');
     c.set('subject', subject);
     c.set('description', description);
     c.set('origin', 'Slack');
     c.set('status', 'New');
     c.set('type', 'Question');
     c.set('reason', 'Instructions not clear');
-
-
+    
     org.insert({ sobject: c}, function(err, resp) {
         if (err) {
             console.error(err);
@@ -41,7 +60,7 @@ function execute(req, res) {
             };
             res.json(message);
         }
-    });
+    });*/
 }
 
 exports.execute = execute;
