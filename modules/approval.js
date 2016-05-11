@@ -10,19 +10,19 @@ function execute(req, res) {
         return;
     }
 
-        var params = req.body.text.split(":");
-        var subject = params[0];
-         var description = params[1];
+    var params = req.body.text.split(":");
+    var subject = params[0];
+    var description = params[1];
 
-
-    var c = nforce.updateSObject('Case');
+    var c = nforce.createSObject('Case');
     c.set('subject', subject);
     c.set('description', description);
     c.set('origin', 'Slack');
     c.set('status', 'New');
     c.set('type', 'Question');
     c.set('reason', 'Instructions not clear');
-    
+
+
     org.insert({ sobject: c}, function(err, resp) {
         if (err) {
             console.error(err);
@@ -42,5 +42,6 @@ function execute(req, res) {
             res.json(message);
         }
     });
+}
 
 exports.execute = execute;
