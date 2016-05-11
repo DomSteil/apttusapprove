@@ -14,7 +14,7 @@ function execute(req, res) {
     var subject = params[0];
     var description = params[1];
 
-    var c = nforce.createSObject('Apttus_Approval__Approval_Request__c');
+    var c = nforce.createSObject('Case');
     c.set('subject', subject);
     c.set('description', description);
     c.set('origin', 'Slack');
