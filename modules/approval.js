@@ -12,7 +12,7 @@ function execute(req, res) {
 
     var params = req.body.text.split(":");
 
-    var appreq = nforce.createSObject('Approval_Request');
+    var appreq = nforce.createSObject('Apttus_Approval__Approval_Request__c');
     appreq.iWa__c = TRUE;
     appreq.Slack_Status__c = 'Approved';
 
