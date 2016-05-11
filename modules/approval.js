@@ -10,8 +10,13 @@ function execute(req, res) {
         return;
     }
 
+    var params = req.body.text.split(":");
+    var subject = params[0];
+    var description = params[1];
 
     var c = nforce.createSObject('Case');
+    c.set('subject', subject);
+    c.set('description', description);
     c.set('origin', 'Slack');
     c.set('status', 'New');
     c.set('type', 'Problem');
@@ -23,6 +28,10 @@ function execute(req, res) {
             console.error(err);
             res.send("An error occurred while creating a case");
         } else {
+            var fields = [];
+            fields.push({title: "Subject", value: subject, short:false});
+            fields.push({title: "Description", value: description, short:false});
+            fields.push({title: "Link", value: 'https://login.salesforce.com/' + resp.id, short:false});
             var message = {
                 response_type: "in_channel",
                 text: "A new case has been created:",
