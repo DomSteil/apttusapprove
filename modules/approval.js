@@ -11,11 +11,16 @@ function execute(req, res) {
     }
 
     var params = req.body.text.split(":");
+    var subject = params[0];
+    var description = params[1];
 
-
-    var c = nforce.createSObject('Apttus_Proposal__Proposal__c');
-    c.set('Apttus_Proposal__Proposal_Name__c', 'Dom Test');
-
+    var c = nforce.createSObject('Case');
+    c.set('subject', subject);
+    c.set('description', description);
+    c.set('origin', 'Slack');
+    c.set('status', 'New');
+    c.set('type', 'Problem');
+    c.set('reason', 'Instructions not clear');
 
 
     org.insert({ sobject: c}, function(err, resp) {
@@ -25,12 +30,13 @@ function execute(req, res) {
         } else {
             var fields = [];
             fields.push({title: "Subject", value: subject, short:false});
+            fields.push({title: "Description", value: description, short:false});
             fields.push({title: "Link", value: 'https://login.salesforce.com/' + resp.id, short:false});
             var message = {
                 response_type: "in_channel",
                 text: "A new case has been created:",
                 attachments: [
-                    {color: "#62A70F", fields: fields}
+                    {color: "#009cdb", fields: fields}
                 ]
             };
             res.json(message);
