@@ -1,11 +1,11 @@
 var nforce = require('nforce'),
     org = require('./auth').org,
 
-    CASE_TOKEN = process.env.CASE_TOKEN;
+    APPROVAL_TOKEN = process.env.APPROVAL_TOKEN;
 
 function execute(req, res) {
 
-    if (req.body.token != CASE_TOKEN) {
+    if (req.body.token != APPROVAL_TOKEN) {
         res.send("Invalid token");
         return;
     }
@@ -19,6 +19,9 @@ function execute(req, res) {
     c.set('description', description);
     c.set('origin', 'Slack');
     c.set('status', 'New');
+    c.set('type', 'Problem');
+    c.set('reason', 'Instructions not clear');
+
 
     org.insert({ sobject: c}, function(err, resp) {
         if (err) {
