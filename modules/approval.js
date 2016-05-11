@@ -1,11 +1,11 @@
 var nforce = require('nforce'),
     org = require('./auth').org,
 
-    APPROVE_TOKEN = process.env.APPROVE_TOKEN;
+    APPROVAL_TOKEN = process.env.APPROVAL_TOKEN;
 
 function execute(req, res) {
 
-    if (req.body.token != APPROVE_TOKEN) {
+    if (req.body.token != APPROVAL_TOKEN) {
         res.send("Invalid token");
         return;
     }
