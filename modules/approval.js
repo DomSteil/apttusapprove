@@ -12,21 +12,13 @@ function execute(req, res) {
 
 
 
-var q = 'SELECT Id, Name, CreatedDate, BillingCity FROM Account WHERE Name = "Venture Industries" LIMIT 1';
+var acc = nforce.createSObject('Account');
+acc.set('Name', 'Spiffy Cleaners');
+acc.set('Phone', '800-555-2345');
+acc.set('SLA__c', 'Gold');
 
-org.query({ query: q }, function(err, resp){
-
-  if(!err && resp.records) {
-
-    var acc = resp.records[0];
-    acc.set('Name', 'Venture Indusries Software');
-    acc.set('Industry', 'Cleaners');
-
-    org.update({ sobject: acc, oauth: oauth }, function(err, resp){
-      if(!err) console.log('It worked!');
-    });
-
-  }
+org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
+  if(!err) console.log('It worked!');
 });
 
 exports.execute = execute;
