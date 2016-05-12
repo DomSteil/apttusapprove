@@ -11,12 +11,11 @@ function execute(req, res) {
     }
 
     var params = req.body.text.split(":");
-    var comments = params[0];
+    var name = params[0]
+    var comments = params[1];
 
     var c = nforce.createSObject('Slack_Requests__c');
-   // c.set('subject', subject);
-   // c.set('description', description);
-    c.set('Approval_Id__c', 'a1vj0000000seJN');
+    c.set('Approval_Id__c', name);
     c.set('Approved__c', 'Yes');
     c.set('Approval_Comments__c', comments);
 
