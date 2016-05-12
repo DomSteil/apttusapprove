@@ -34,7 +34,7 @@ function execute(req, res) {
             fields.push({title: "Link", value: 'https://login.salesforce.com/' + resp.id, short:false});
             var message = {
                 response_type: "in_channel",
-                text: "A new case has been created:",
+                text: "Quote has been approved:",
                 attachments: [
                     {color: "#009cdb", fields: fields}
                 ]
