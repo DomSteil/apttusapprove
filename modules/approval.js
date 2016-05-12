@@ -12,13 +12,22 @@ function execute(req, res) {
 
 
 
-var acc = nforce.createSObject('Account');
-acc.set('Name', 'Spiffy Cleaners');
-acc.set('Phone', '800-555-2345');
-acc.set('SLA__c', 'Gold');
+var q = 'SELECT Id, Slack_Status__c FROM Apttus_Approval__Approval_Request__c WHERE Id = a1vj0000000seJN LIMIT 1';
 
-org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
-  if(!err) console.log('It worked!');
-});
+    org.query(q, function(err, resp){
+
+        if(!err && resp.records) {
+
+            var c = resp.records[0];
+            c.Slack_Status__c = 'Approved';
+
+            org.update(c, function(err, resp){
+                if(!err) console.log('We win!');
+            });
+        }
+    });
+};
+
+
 
 exports.execute = execute;
