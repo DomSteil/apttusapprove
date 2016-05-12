@@ -25,10 +25,9 @@ var q = 'SELECT Id, Slack_Status__c FROM Apttus_Approval__Approval_Request__c WH
                 if(!err) console.log('We win!');
             });
         }
-    };
-});
-
+    });
 };
+
 
 
 exports.execute = execute;
