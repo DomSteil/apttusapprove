@@ -12,22 +12,22 @@ function execute(req, res) {
 
 
 
-var q = 'SELECT Id, Slack_Status__c FROM Apttus_Approval__Approval_Request__c WHERE id = a1vj0000000seJN LIMIT 1';
+var q = 'SELECT Id, Slack_Status__c FROM Apttus_Approval__Approval_Request__c WHERE Id = a1vj0000000seJN LIMIT 1';
 
-    org.query({q, oauth, function(err, resp){
+    org.query(q, oauth, function(err, resp) {
 
         if(!err && resp.records) {
 
             var c = resp.records[0];
             c.Slack_Status__c = 'Approved';
 
-            org.update(c, oauth, function(err, resp){
-                if(!err) console.log('We win');
+            org.update(c, oauth, function(err, resp) {
+                if(!err) console.log('We win!');
             });
         }
     };
 });
-    
+
 };
 
 
