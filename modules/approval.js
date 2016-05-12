@@ -12,9 +12,9 @@ function execute(req, res) {
 
 
 
-var querycase = 'SELECT Id, Slack_Status__c FROM Apttus_Approval__Approval_Request__c WHERE id = a1vj0000000seJN LIMIT 1';
+var q = 'SELECT Id, Slack_Status__c FROM Apttus_Approval__Approval_Request__c WHERE id = a1vj0000000seJN LIMIT 1';
 
-    org.query({ query: querycase }, function(err, resp){
+    org.query({q, oauth, function(err, resp){
 
         if(!err && resp.records) {
 
@@ -25,7 +25,7 @@ var querycase = 'SELECT Id, Slack_Status__c FROM Apttus_Approval__Approval_Reque
                 if(!err) console.log('We win');
             });
         }
-    });
+    };
 };
 
 exports.execute = execute;
