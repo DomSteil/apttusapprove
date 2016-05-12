@@ -19,7 +19,9 @@ var q = 'SELECT Id, Slack_Status__c FROM Apttus_Approval__Approval_Request__c WH
         if(!err && resp.records) {
 
             var c = resp.records[0];
+            console.log(c);
             c.Slack_Status__c = 'Approved';
+
 
             org.update(c, function(err, resp){
                 if(!err) console.log('We win!');
