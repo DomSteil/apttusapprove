@@ -17,7 +17,8 @@ function execute(req, res) {
     var c = nforce.createSObject('Apttus_Approval__Approval_Request__c');
     c.set('subject', subject);
     c.set('description', description);
-    c.set(Slack_Status__c,'Approved');
+    c.set('Slack_Status__c', 'Approved');
+
 
     org.insert({ sobject: c}, function(err, resp) {
         if (err) {
