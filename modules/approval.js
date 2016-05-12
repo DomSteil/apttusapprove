@@ -19,7 +19,7 @@ var querycase = 'SELECT Id, Slack_Status__c FROM Apttus_Approval__Approval_Reque
         if(!err && resp.records) {
 
             var c = resp.records[0];
-            c.set('Slack_Status__c', 'Approved');
+            c.Slack_Status__c = 'Approved';
 
             org.update(c, oauth, function(err, resp){
                 if(!err) console.log('We win');
