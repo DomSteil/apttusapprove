@@ -18,6 +18,9 @@ function execute(req, res) {
    // c.set('subject', subject);
    // c.set('description', description);
     c.set('Slack_Status__c', 'Approved');
+    c.set('Apttus_Approval__Assigned_To_Type__c', 'User');
+    c.set('Apttus_Approval__Step_Name__c', 'Line Item Approvals (Term 12)');
+    c.set('Apttus_Approval__Active__c', TRUE);
 
 
     org.insert({ sobject: c}, function(err, resp) {
