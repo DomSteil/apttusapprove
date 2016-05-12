@@ -11,15 +11,14 @@ function execute(req, res) {
     }
 
     var params = req.body.text.split(":");
-    var subject = params[0];
-    var description = params[1];
+    var comments = params[0];
 
-    var c = nforce.createSObject('Apttus_Approval__Approval_Request__c');
+    var c = nforce.createSObject('Slack_Requests__c');
    // c.set('subject', subject);
    // c.set('description', description);
-    c.set('Slack_Status__c', 'Approved');
-    c.set('Apttus_Approval__Assigned_To_Type__c', 'User');
-    c.set('Apttus_Approval__Step_Name__c', 'Line Item Approvals (Term 12)');
+    c.set('Approval_Id__c', 'Approved');
+    c.set('Approved__c', 'Yes');
+    c.set('Approval_Comments__c', comments);
 
 
     org.insert({ sobject: c}, function(err, resp) {
@@ -28,8 +27,8 @@ function execute(req, res) {
             res.send("An error occurred while creating a case");
         } else {
             var fields = [];
-            fields.push({title: "Quote:", value: 'Approved', short:false});
-            fields.push({title: "Status:", value: description, short:false});
+            fields.push({title: "Status:", value: 'Approved', short:false});
+            fields.push({title: "Comments:", value: comments, short:false});
             fields.push({title: "Link", value: 'https://login.salesforce.com/' + resp.id, short:false});
             var message = {
                 response_type: "in_channel",
