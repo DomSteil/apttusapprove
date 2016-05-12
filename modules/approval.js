@@ -26,6 +26,6 @@ var querycase = 'SELECT Id, Slack_Status__c FROM Apttus_Approval__Approval_Reque
             });
         }
     });
-
+};
 
 exports.execute = execute;
