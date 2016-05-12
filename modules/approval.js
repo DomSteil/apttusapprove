@@ -27,7 +27,7 @@ function execute(req, res) {
         } else {
             var fields = [];
             fields.push({title: "Status:", value: 'Approved', short:false});
-            fields.push({title: "Approval:", value: name, short:false});
+            fields.push({title: "Name:", value: name, short:false});
             fields.push({title: "Comments:", value: comments, short:false});
             fields.push({title: "Link", value: 'https://login.salesforce.com/' + resp.id, short:false});
             var message = {
