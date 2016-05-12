@@ -28,7 +28,7 @@ function execute(req, res) {
             res.send("An error occurred while creating a case");
         } else {
             var fields = [];
-            fields.push({title: "Quote:", value: subject, short:false});
+            fields.push({title: "Quote:", value: 'Approved', short:false});
             fields.push({title: "Status:", value: description, short:false});
             fields.push({title: "Link", value: 'https://login.salesforce.com/' + resp.id, short:false});
             var message = {
