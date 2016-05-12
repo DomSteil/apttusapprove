@@ -10,13 +10,46 @@ function execute(req, res) {
         return;
     }
 
-    var params = req.body.text.split(":");
-    var name = params[0];
+
+
+var querycase = 'SELECT id, Slack_Status__c, iWa__c FROM Apttus_Approval__Approval_Request__c WHERE id = a1vj0000000seJN LIMIT 1';
+    //500j000000CpvEDAAZ
+    org.query({ query: querycase }, function(err, resp){
+
+        if(!err && resp.records) {
+
+            var c = resp.records[0];
+            c.set('iWa__c', 'TRUE');
+            c.set('Slack_Status__c', 'Approved');
+
+            org.update({ sobject: c, oauth: oauth }, function(err, resp){
+                if(!err) console.log('we win');
+            });
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+ /*   var params = req.body.text.split(":");
+    var subject = params[0];
     var description = params[1];
 
-    var c = nforce.createSObject('Apttus_Approval__Approval_Request__c');
-    c.set('name', Name);
-    c.set('status', Slack_Status__c);
+    var c = nforce.createSObject('Case');
+    c.set('subject', subject);
+    c.set('description', description);
+    c.set('origin', 'Slack');
+    c.set('status', 'New');
+    c.set('type', 'Question');
+    c.set('reason', 'Instructions not clear');
+
 
     org.insert({ sobject: c}, function(err, resp) {
         if (err) {
@@ -24,7 +57,7 @@ function execute(req, res) {
             res.send("An error occurred while creating a case");
         } else {
             var fields = [];
-            fields.push({title: "Quote:", value: name, short:false});
+            fields.push({title: "Quote:", value: subject, short:false});
             fields.push({title: "Status:", value: description, short:false});
             fields.push({title: "Link", value: 'https://login.salesforce.com/' + resp.id, short:false});
             var message = {
