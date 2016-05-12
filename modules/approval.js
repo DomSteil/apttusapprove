@@ -10,7 +10,7 @@ function execute(req, res) {
         return;
     }
 
-    var params = req.body.text.split(":");
+    var params = req.body.text.split(",");
     var name = params[0]
     var comments = params[1];
 
