@@ -12,22 +12,21 @@ function execute(req, res) {
 
 
 
-var q = 'SELECT Id, Slack_Status__c FROM Apttus_Approval__Approval_Request__c WHERE Id = a1vj0000000seJN LIMIT 1';
+var q = 'SELECT Id, Name, CreatedDate, BillingCity FROM Account WHERE Name = "Venture Industries" LIMIT 1';
 
-    org.query({ query:q }, function(err, resp){
+org.query({ query: q }, function(err, resp){
 
-        if(!err && resp.records) {
+  if(!err && resp.records) {
 
-            var c = resp.records[0];
-            c.set(Slack_Status__c,'Approved');
+    var acc = resp.records[0];
+    acc.set('Name', 'Venture Indusries Software');
+    acc.set('Industry', 'Cleaners');
 
-            org.update({ sobject: c, oauth:oauth }, function(err, resp){
-                if(!err) console.log('We win!');
-            });
-        }
+    org.update({ sobject: acc, oauth: oauth }, function(err, resp){
+      if(!err) console.log('It worked!');
     });
-};
 
-
+  }
+});
 
 exports.execute = execute;
