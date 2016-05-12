@@ -16,7 +16,7 @@ function execute(req, res) {
     var c = nforce.createSObject('Slack_Requests__c');
    // c.set('subject', subject);
    // c.set('description', description);
-    c.set('Approval_Id__c', 'Approved');
+    c.set('Approval_Id__c', 'a1vj0000000seJN');
     c.set('Approved__c', 'Yes');
     c.set('Approval_Comments__c', comments);
 
