@@ -27,14 +27,14 @@ function execute(req, res) {
         } else {
             var fields = [];
             fields.push({title: "Status:", value: 'Approved', short:false});
-            fields.push({title: "Name:", value: name, short:false});
+            fields.push({title: "Approval Request:", value: name, short:false});
             fields.push({title: "Comments:", value: comments, short:false});
             fields.push({title: "Link", value: 'https://login.salesforce.com/' + resp.id, short:false});
             var message = {
                 response_type: "in_channel",
                 text: "Quote has been approved:",
                 attachments: [
-                    {color: "#009cdb", fields: fields}
+                    {color: "#62A70F", fields: fields}
                 ]
             };
             res.json(message);
