@@ -34,7 +34,7 @@ function execute(req, res) {
                 response_type: "in_channel",
                 text: "Quote has been approved:",
                 attachments: [
-                    {color: "#62A70F", fields: fields}
+                    {color: "#009cdb", fields: fields}
                 ]
             };
             res.json(message);
