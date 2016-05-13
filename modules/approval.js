@@ -23,7 +23,7 @@ function execute(req, res) {
     org.insert({ sobject: c}, function(err, resp) {
         if (err) {
             console.error(err);
-            res.send("An error occurred while creating a case");
+            res.send("An error occurred while creating a quote");
         } else {
             var fields = [];
             fields.push({title: "Status:", value: 'Approved', short:false});
@@ -34,7 +34,7 @@ function execute(req, res) {
                 response_type: "in_channel",
                 text: "Quote has been approved:",
                 attachments: [
-                    {color: "#009cdb", fields: fields}
+                    {color: "#62A7OF", fields: fields}
                 ]
             };
             res.json(message);
